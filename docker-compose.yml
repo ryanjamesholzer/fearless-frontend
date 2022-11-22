@@ -5,7 +5,7 @@ services:
       context: ./monolith
       dockerfile: ./Dockerfile.dev
     environment:
-      DATABASE_URL: "postgres://monolith:password@database:5432/monolith"
+      DATABASE_URL: "postgres://postgres:test-databases@database:5432/monolith"
       WAIT_HOSTS: database:5432, rabbitmq:5672
       WAIT_TIMEOUT: 180
       PEXELS_API_KEY: ${PEXELS_API_KEY}
@@ -29,7 +29,7 @@ services:
       - rabbitmq
       - database
     environment:
-      DATABASE_URL: "postgres://attendees:password@database:5432/attendees"
+      DATABASE_URL: "postgres://postgres:test-databases@database:5432/attendees"
       WAIT_HOSTS: database:5432, rabbitmq:5672
       WAIT_TIMEOUT: 180
   attendees_conference_info:
@@ -41,7 +41,7 @@ services:
     depends_on:
       - monolith
     environment:
-      DATABASE_URL: "postgres://attendees:password@database:5432/attendees"
+      DATABASE_URL: "postgres://postgres:test-databases@database:5432/attendees"
   attendees_account_info:
     build:
       context: ./attendees_microservice
@@ -52,7 +52,7 @@ services:
       - rabbitmq
       - database
     environment:
-      DATABASE_URL: "postgres://attendees:password@database:5432/attendees"
+      DATABASE_URL: "postgres://postgres:test-databases@database:5432/attendees"
       WAIT_HOSTS: database:5432, rabbitmq:5672
       WAIT_TIMEOUT: 180
   presentation_workflow:
