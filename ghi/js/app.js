@@ -15,6 +15,11 @@ function createCard(name, location, description, pictureUrl, starts, ends) {
   }
 
 
+function errorAlert(e) {
+    return `<div class="alert alert-danger" role="alert">${e}</div>`
+}
+
+
   window.addEventListener('DOMContentLoaded', async () => {
 
     const url = 'http://localhost:8000/api/conferences/';
@@ -23,7 +28,10 @@ function createCard(name, location, description, pictureUrl, starts, ends) {
       const response = await fetch(url);
 
       if (!response.ok) {
-        console.error("There has been an error!")
+        let e = "There has been an error!";
+        const html = errorAlert(e);
+        const error = document.querySelector('.row');
+        error.innerHTML = html;
         // Figure out what to do when the response is bad
       } else {
         const data = await response.json();
@@ -49,10 +57,11 @@ function createCard(name, location, description, pictureUrl, starts, ends) {
 
       }
     } catch (e) {
-        return `
-        <div class="alert alert-danger" role="alert">
-            Something went wrong!
-        </div>`
+        console.error(e);
+        const html = errorAlert(e);
+        const error = document.querySelector('.row');
+        error.innerHTML = html;
+
       // Figure out what to do if an error is raised
     }
 
