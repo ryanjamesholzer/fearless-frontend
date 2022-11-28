@@ -14,11 +14,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         console.log(payload);
 
-        if (payload.user.perms.includes("events.add_conference") && payload.user.perms.includes("events.add_location")) {
+        if (payload.user.perms.includes("events.add_conference") && payload.user.perms.includes("events.add_location") && payload.user.perms.includes("presentations.add_presentation")) {
             const locationLinkTag = document.getElementById('hidden-location');
             locationLinkTag.classList.remove("d-none");
             const conferenceLinkTag = document.getElementById('hidden-conference');
             conferenceLinkTag.classList.remove('d-none');
+            const presentationLinkTag = document.getElementById('hidden-presentation');
+            presentationLinkTag.classList.remove('d-none');
         }
 
 
