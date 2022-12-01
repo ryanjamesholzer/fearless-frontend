@@ -14,7 +14,7 @@ function App(props) {
     <BrowserRouter>
       <Nav />
         <Routes>
-          <Route index element={<MainPage/>}/>
+          <Route path="" index element={<MainPage/>}/>
           <Route path="attendees">
             <Route path="new" element={<AttendeeSignUpForm/>} />
            </Route>
